@@ -39,7 +39,7 @@ Si vous souhaitez utiliser le **navigateur web** pour utiliser Discord :
 
 #### c. Installation
 
-**Lien vers un serveur Discord qui contient un bot qui peut lançer le jeu** ➡️ https://discord.gg/WuvrdZH
+**Lien vers un serveur Discord qui contient un bot qui peut lançer le jeu** ➡️ https://discord.gg/8AkAsJA
 
 **Installation personnelle d'un serveur et d'un bot** ➡️ https://drive.google.com/open?id=1NpUusKxosOCf8AtIES5-60pueyE5PrEi
 
