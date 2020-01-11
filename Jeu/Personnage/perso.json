@@ -1,0 +1,10 @@
+﻿{
+	"nom" : ["Alphonse Brown", "Vanessa Carré", "Diego Tan", "Martine Diebolt"],
+	"sexe" : ["Homme", "Femme","Homme", "Femme"],
+	"age" : ["70 ans", "30 ans", "45 ans", "12 ans"],
+	"taille" : ["165 cm", "173 cm", "185 cm", "140 cm"],
+	"poids" : ["90 kg", "65 kg", "80 kg", "40 kg"],
+	"fumeur" : ["non", "non", "oui", "non"],
+	"obesite" : ["oui","non","non","non"],
+	"icone" : ["https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/man-bald-medium-light-skin-tone_1f468-1f3fc-200d-1f9b2.png", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/woman-white-haired_1f469-200d-1f9b3.png", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/older-adult_emoji-modifier-fitzpatrick-type-4_1f9d3-1f3fd_1f3fd.png", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/girl_emoji-modifier-fitzpatrick-type-6_1f467-1f3ff_1f3ff.png"]
+}

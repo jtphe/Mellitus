@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: initJeu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: initJeu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Discord = require('discord.js');
+const sfm = require('./saveFileManagement.js');
+const myBot = require('./myBot.js');
+const calcul = require('../Evenement/calcul.js');
+const event = require('../Evenement/event.js');
+
+/** Fonction initialisant la partie
+* @param {string} message - Message discord
+* @param {Client} client - Le Client utilisé pour le jeu
+**/
+exports.initJeu = function initJeu(message, client) {
+
+	if(!message.member.roles.some(r=>['Joueur'].includes(r.name))) {
+
+		// creation d'un fichier de sauvegarde de sauvegarde
+		// lecture de ce fichier de sauvegarde
+		const partie = sfm.loadSave(message.author.id);
+		const eventName = 'Joueur';
+		const rolePers = initRole(message, eventName, client);
+
+		initChannelGrp(message, partie, message.author.username, rolePers);
+
+		message.delete();
+		message.channel.send(message.author.username + ' a lancé une partie !');
+
+	}
+	else {
+		message.channel.send('Vous êtes déjà en jeu.');
+	}
+};
+
+/** Fonction créant un role joueur à l'utilisateur
+* @param {string} message - Message discord
+* @param {string} eventName - Prefix du role de l'utilisateur
+* @param {Client} client - Le Client utilisé pour le jeu
+* @return {string} Nom du role joueur de l'utilisateur
+**/
+function initRole(message, eventName, client) {
+
+	const nomRole = eventName + '-' + message.author.username;
+	// let myRole = message.guild.roles.find('name', 'Joueur');
+
+	const myRole = message.guild.roles.find(role => {
+		if(role.name == 'Joueur') {
+			return role;
+		}
+	});
+	message.member.addRole(myRole);
+
+	message.guild.createRole({
+		name: nomRole,
+		color: 0x00FF00,
+		permissions: 0,
+	}).then(role => {
+		message.member.addRole(role, nomRole)
+		.catch(error => client.catch(error));
+	})
+	.catch(error => client.catch(error));
+	return nomRole;
+}
+
+/** Fonction créant un channel visible que pour l'utilisateur
+* @param {string} message - Message discord
+* @param {Object} partie - Objet json de la partie
+* @param {string} rolePers - Nom du role joueur de l'utilisateur
+* @param {string} channelName - Nom du channel à créer
+* @param {Snowflake} chanGrpId - Identifiant du channel catégorie
+* @return {string} Texte vérifiant l'ajout
+**/
+function initChannel(message, partie, rolePers, channelName, chanGrpId) {
+
+	const server = message.guild;
+	// Creation d'un channel textuel
+	server.createChannel(channelName, 'text')
+
+	.then((chan) => {
+		// Place le channel textuel dans la catégorie de jeu
+		chan.setParent(chanGrpId)
+		.then((chan2) => {
+
+			chan2.overwritePermissions(message.guild.roles.find(role => {
+				if(role.name == '@everyone') {
+					return role;
+				}
+			}), {
+				'CREATE_INSTANT_INVITE' : false,
+				'VIEW_CHANNEL': false,
+				'CONNECT': false,
+				'SEND_MESSAGES': false
+			});
+
+			if(channelName == 'Hub') {
+				chan2.overwritePermissions(message.guild.roles.find(role => {
+					if(role.name == rolePers) {
+						return role;
+					}
+				}), {
+					'VIEW_CHANNEL': true,
+					'CONNECT': true,
+					'SEND_MESSAGES': true
+				});
+			}
+			else{
+				chan2.overwritePermissions(message.guild.roles.find(role => {
+					if(role.name == rolePers) {
+						return role;
+					}
+				}), {
+					'VIEW_CHANNEL': true,
+					'CONNECT': true,
+					'SEND_MESSAGES': false
+				});
+			}
+
+			// on ajoute le channel a la sauvegarde de partie
+			partie[channelName] = chan2.id;
+
+			if(channelName == 'Hub')
+				bienvenue(message);
+		}
+		).catch(console.error);
+	}).catch(console.error);
+
+	return '```Added```';
+}
+
+/** Fonction initialisant les channels et les caractéristique de l'utilisateur
+* @param {string} message - Message discord
+* @param {Object} partie - Objet json de la partie
+* @param {Snowflake} partie.chanGrp - Identifiant du channel catégorie
+* @param {Snowflake} partie.player - Identifiant de l'utilisateur
+* @param {number} partie.partJour - Partie de la journée
+* @param {number} partie.numJour - Numéro du jour
+* @param {number} partie.numEvent - Numéro de l'évenement
+* @param {number} partie.insuline - Activateur de la prise d'insuline
+* @param {string[]} partie.activite - Liste des actions faites par l'utilisateur
+* @param {string[]} partie.consequence - Liste des consequences de l'utilisateur
+* @param {number} partie.glycemie - Taux de glycémie de l'utilisateur
+* @param {number[]} partie.tabGlycemie - Tableau de tous les taux de glycémie de l'utilisateur
+* @param {string} channelGrpName - Nom du channel catégorie
+* @param {string} rolePers - Nom du role joueur de l'utilisateur
+* @return {Snowflake} Identifiant du channel catégorie
+**/
+function initChannelGrp(message, partie, channelGrpName, rolePers) {
+	const server = message.guild;
+	let res = '';
+	server.createChannel(channelGrpName, 'category')
+	.then(async chanGrp => {
+		res = chanGrp.id;
+		partie.chanGrp = chanGrp.id;
+		partie.player = message.author.id;
+		partie.tabPerso = [];
+		partie.nom = '';
+		partie.sexe = '';
+		partie.age = 0;
+		partie.taille = 0;
+		partie.poids = 0;
+		partie.partJour = 0;
+		partie.numJour = -1;
+		partie.numEvent = -1;
+		partie.choixPerso = 0;
+		partie.nbInsu = 3;
+		partie.insuline = 0;
+		partie.activite = [];
+		partie.impactActivite = [];
+		partie.impactNutrition = [];
+		partie.consequence = [];
+		partie.evenement = true;
+		partie.mort = false;
+		partie.glycemie = 2.5;
+		partie.tabGlycemie = [2.5];
+		partie.stress = 0;
+		partie.vie = 100;
+		partie.amput = 0;
+		partie.soda = true;
+		partie.faim = 0;
+		initChannel(message, partie, rolePers, 'Hub', res);
+		initChannel(message, partie, rolePers, 'Informations', res);
+		initChannel(message, partie, rolePers, 'Personnage', res);
+		initChannel(message, partie, rolePers, 'Journal', res);
+		sfm.save(message.author.id, partie);
+	})
+	.catch(console.error);
+	return res;
+}
+
+/** Fonction qui écrit le message de lancement de partie
+* @param {string} message - Message discord
+**/
+function bienvenue(message) {
+
+	const partie = sfm.loadSave(message.author.id);
+
+	const chanId = myBot.messageChannel(message, 'hub', partie);
+
+	if(partie.tuto) {
+		titre = 'Tutoriel';
+		text = 'Ceci est le tutoriel du jeu Mellitus.';
+	}
+	else{
+		titre = 'Jeu';
+		text = 'Vous allez jouer à Mellitus. Bon jeu.';
+	}
+
+	const embed = new Discord.RichEmbed()
+	.setColor(15013890)
+	.setTitle('Bienvenue dans Mellitus')
+
+	.addField(titre, text)
+	.addField('Choisir un personnage prédéfini : ', '✅')
+	.addField('Créer son propre personnage : ', '☑')
+
+	message.guild.channels.get(chanId).send({ embed })
+	.then(async function(mess) {
+		await mess.react('✅');
+		await mess.react('☑');
+	});
+}
+
+/** Fonction qui écrit le message de bienvenue du médecin
+* @param {string} message - Message discord
+* @param {string} partie.nom - Nom du personnage
+**/
+exports.accueilMedecin = function accueilMedecin(message, partie)
+{
+	const doseInit = calcul.doses(partie)[0];
+	const doseObj = calcul.doses(partie)[1];
+	const augmentation = calcul.doses(partie)[2];
+
+	const embed = new Discord.RichEmbed()
+	.setTitle('Bienvenue')
+	.setAuthor('Docteur Greece', 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/female-health-worker-type-1-2_1f469-1f3fb-200d-2695-fe0f.png')
+	.setColor(808367)
+	.setFooter('Dr Greece', 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/female-health-worker-type-1-2_1f469-1f3fb-200d-2695-fe0f.png')
+	.setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Caduceus.svg/299px-Caduceus.svg.png') // Symbole médecine
+	.setTimestamp() // Crée de l'espace
+	.addField('Bonjour ' + partie.nom, 'Je m\'appelle Alda Greece, je serai votre diabètologue tout le long du jeu.\n' +
+						'Vous êtes actuellement atteint(e) de diabète **(1)**. Je vais en conséquence vous aider à gérer votre taux d\'insuline,' +
+						' à l\'aide d\'un bilan à chaque fin de journée dans lequel je vais vous donner des conseils ainsi qu\'un commentaire sur votre journée.')
+	.addField('(1)', '*Le diabète se caractérise par une hyperglycémie chronique,' +
+						'c’est-à-dire un excès de sucre dans le sang et donc un taux de glucose (glycémie) trop élevé*')
+	.addField('Conseil de début de partie', 'Pour ce début de partie, il sera recommandé de prendre une dose d\'insuline de ' + doseInit.toFixed().toString() + '. Votre objectif sera d\'atteindre une dose d\'insuline de ' + doseObj.toFixed().toString() + '. Pour cela il vous est recommandé d\'augmenter votre dose de ' + augmentation + ' lors de chacune de vos prises.')
+
+	message.channel.send({ embed })
+	.then(async function(message) {
+		await message.react('➡');
+	});
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#accueilMedecin">accueilMedecin</a></li><li><a href="global.html#bienvenue">bienvenue</a></li><li><a href="global.html#initChannel">initChannel</a></li><li><a href="global.html#initChannelGrp">initChannelGrp</a></li><li><a href="global.html#initJeu">initJeu</a></li><li><a href="global.html#initRole">initRole</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Dec 13 2018 15:12:26 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

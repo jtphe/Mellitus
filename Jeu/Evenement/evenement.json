@@ -1,0 +1,9 @@
+﻿{
+	"hyper1" : ["Mal de tête", "J'ai un de ces mal de tête..."],
+	"hyper2" : ["Soif", "Ça fait déjà le 3e verre d'eau que je prend et j'ai encore soif."],
+	"hyper3" : ["Petit besoin", "Ca fait quelques minutes maintenant que j'ai vraiment envie de faire pipi. C'est vraiment bizarre, je suis allé(e) aux toilettes il y a 20 minutes."],
+	"hyper4" : ["Fatigue", "J'ai hâte que la journée se finisse, j'ai un coup de barre..."],
+	"hypo1" : ["Vertige", "Ouïe ouïe ouïe, j'ai des vertiges, il faut que je m'assoie un petit peu. Ah, c'est bon, c'est passé."],
+	"hypo2" : ["Vision floue", "Oulah, j'ai les yeux qui flanchent ou quoi ? Ah, c'est bon, je voyais flou pendant un moment."],
+	"hypo3" : ["Tremblements", "J'arrête pas de trembler, c'est peut être dû au froid, mais il fait pas si froid que ça."]
+}

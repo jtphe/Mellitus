@@ -1,0 +1,48 @@
+﻿{
+
+	"nomActiviteM" : ["Faire une partie de jeux videos","Faire un jogging", "Faire la grasse matinée", "Lire un livre"],
+	"impactAM" : [[1,-10,0,7,7],[3,-10,-0.2,-10,-10],[0,5,0,10,15],[0,-5,0,5,5]],
+
+	"nomActiviteA" : ["Faire un sport collectif", "Faire un sport individuel", "Faire une partie de jeux videos", "Faire de la p\u00e8che", "Allez à la piscine", "Se promener", "Aller dans un bar", "Aller au cin\u00e9ma"],
+	"impactAA" : [[4,-10,-0.5,-7,-12],[3,-5,-0.5,-7,-12],[1,-10,0,7,7],[1,-5,0,0,0],[3,-5,-0.3,-5,-8],[2,-5,-0.10,3,0],[2,-15,-0.1,10,10],[1,-10,0,6,6]],
+
+	"nomActiviteS" : ["Faire la f\u00eate", "Se promener", "Aller dans un bar", "Aller au cin\u00e9ma", "Regarder la tv", "Lire un livre", "Aller dormir"],
+	"impactAS" : [[4,-20,-0.4,15,15],[1,-5,-0.1,3,0],[2,-10,-0.1,10,10],[1,-10,0,6,6],[0,-5,0,5,5],[0,-5,0,5,5],[0,5,0,0,3]],
+
+	"nomRepasM" : ["Prendre un fruit", "Prendre du pain", "Prendre un croissant",  "Prendre un caf\u00e9", "Manger des pancakes"],
+	"impactRM" : [[5,-5,0.1,0,-10],[1,0,0.6,0,0],[2,0,0.3,0,0],[4,-5,0,0,0],[0,5,0.3,0,5]],
+
+	"nomRepasS" : ["Manger un fast-food", "Manger de la viande", "Manger des légumes", "Manger du riz", "Manger des nouilles"],
+	"impactRS" : [[0,10,0.8,0,5],[2,0,0,0,5],[5,-5,0.1,0,-10],[4,0,0.5,0,-5],[3,-5,0.2,0,-5]],
+
+	"actu" : 	[
+					["Sport", "Un raton-laveur vient de remporter un match d'échec contre le champion du monde en titre."],
+					["Sport", "Le Racing Club de Strasbourg devient champion de France après avoir complètement écrasé le Paris Saint Germain 7 buts à 1."],
+					["Sport", "La pétanque est officiellement devenue le sport le plus joué en France devant le waterpolo et la samba."],
+					["Sport", "Franck Ribery vient d'être élu ministre des sports."],
+					["Sport", "Hier soir, l'équipe de basketball des Toronto Raptors cédèrent leur titre de champion de la NBA à l'équipe de Sergy-Pontois."],
+					["Politique", "Après un vote trés partagé, c'est finalement Julio Ricardo Del Rosa Ramirez qui sera le nouveau président de la République française."],
+					["Politique", "Après de nombreuses tensions entre la l'Italie et le Vatican, le pape décida de débuter une croisade envers les infidèles italiens."],
+					["Politique", "Les habitants du Paraguay viennent d'élire Bob l'éponge comme nouveau président"],
+					["Politique", "C'est la fin du mouvement 'Bottes oranges', les politiciens ont cédé aux caprices de la population et ont finalement accepté la baisse de prix des bottes."],
+					["Politique", "Le président de la Yougoslavie et son premier ministre ont organisé un match de toupies Beyblade. Le perdant doit faire un don à la croix rouge"],
+					["Géographie", "Les USA et la Russie se sont alliés dans une guerre contre le Pérou. On peut imaginer, une future fusion de ces 2 pays pour n'en former qu'un."],
+					["Géographie", "La Corée du Nord est dans une crise sans précédant. Le pays s'est divisé en deux parties : la Corée du Nord du Sud, qui veut renouer des liens avec le monde et la Corée du Nord du Nord, qui veut imposer la domination sur le monde."],
+					["Géographie", "L'Atlantide n'était pas un monde fantastique caché dans les profondeurs sous-marines. En effet, vous pouvez visiter cet endroit peu connu situé dans la banlieu de Bangkok"],
+					["Géographie", "Pluton devient officiellement un nouvel état des Etats-Unis d'Amérique."],
+					["Géographie", "La théorie des platistes disant que la Terre est plate fut invalidée par une soudaine annonce de l'astronaute Neil Armstrong, racontant sa vision de la Terre quand il était sur la Lune en 1969. Notre planète a finalement une forme de boué de sauvetage (avec les cordes)."],
+					["Education", "Un musée de l'éducation ouvre ses portes ce weekend en Allemagne, avec comme symbole Dora l'Exploratrice."],
+					["Education", "Le bonnet d'âne et les punitions dans le coin de la salle sont de retour dans les écoles primaires, les collèges et les lycées."],
+					["Education", "Le dernier grand Blockbuster 'Goatman return' fut le plus éducatif de l'année."],
+					["Education", "La baccalauréat n'est plus obligatoire, à l'exception du bac STD2A qui est obligatoire pour tous."],
+					["Education", "L'art plastique est introduit dans le bac S avec un coefficient 8,5."],
+					["Alimentaire", "Les belges ont décidé de changer la recette de leurs fameuses frites. Des rumeurs circulent divulgant les ingrédients secrets de cette nouvelle recette. Parmi eux, du chocolat fondu, de la choucroute ou encore des spaghettis bolognaises."],
+					["Alimentaire", "Des cuisiniers italiens ont créé la plus grande pizza du monde. Son diamètre mesure exactement 14 kilomètres."],
+					["Alimentaire", "Après le kinder surprise, c'est les capuchons des feutres qui deviennent interdit aux USA, car beaucoup sont les enfants qui se sont étouffés avec."],
+					["Invention", "Le skateboard volant, ou hoverboard, est officiellement commercialisé dans les magasins spécialisés"],
+					["Invention", "Le dessinateur Kevin Goodmn a créé la surprise quand son dessin de chauve-souris est sortit du papier. Il annonça plus tard que c'était une invention d'Edgar Fletch, grand technicien 3D."],
+					["Invention", "Appelé depuis peu l'invention du siècle, le 'Translator' est un moyen direct de communiquer entre espèce. C'est le début d'une nouvelle ère dans laquelle, humains et animaux peuvent communiquer entre eux."],
+					["Invention", "Le célèbre trafiquant de drogue Jacques Elessdet s'est recouvertit dans le trafic d'imprimante 3D. En effet, ce dernier a inventé une imprimante 3D imprimant des imprimantes 3D."],
+					["Autre", "C'est finalement lundi en Egypte que Pierre L. , disparu depuis 2 mois, fut retrouvé par la police locale. D'après les dernières informations qui nous sont parvenues, il était en train de faire de la luge sur la pyramide de Khéops."]
+				]
+}

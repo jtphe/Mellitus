@@ -1,0 +1,40 @@
+{
+  "chanGrp": "522707769330237441",
+  "player": "357486231119986688",
+  "partJour": 0,
+  "numEvent": 0,
+  "nbJour": -2,
+  "numJour": 0,
+  "insuline": 1,
+  "activite": [],
+  "consequence": [],
+  "tuto": false,
+  "tabPerso": [
+    "Homme",
+    "Aze",
+    "Aze",
+    "34 ans",
+    "123 cm",
+    "56 kg"
+  ],
+  "nom": "Aze Aze",
+  "sexe": "Homme",
+  "age": 34,
+  "taille": 123,
+  "poids": 56,
+  "choixPerso": 0,
+  "nbInsu": 3,
+  "impactActivite": [],
+  "impactNutrition": [],
+  "evenement": true,
+  "mort": false,
+  "glycemie": 2.5,
+  "tabGlycemie": [
+    2.5
+  ],
+  "stress": 0,
+  "vie": 100,
+  "amput": 0,
+  "soda": true,
+  "faim": 0
+}

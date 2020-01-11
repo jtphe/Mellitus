@@ -1,0 +1,5 @@
+{
+  "player": "ID du joueur",
+  "chanGrp": "ID du group de channel du joueur (peut servir a reccup les channels e la partie avec un if (channel.partent == partie.chanGrp) )",
+  "partJour": 0
+}

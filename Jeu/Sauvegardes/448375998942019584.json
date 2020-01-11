@@ -1,0 +1,32 @@
+{
+  "chanGrp": "522435719621509121",
+  "player": "448375998942019584",
+  "partJour": 0,
+  "numEvent": 0,
+  "nbJour": -2,
+  "numJour": 0,
+  "insuline": 0,
+  "activite": [],
+  "consequence": [],
+  "tuto": false,
+  "tabPerso": [],
+  "nom": "Vanessa Carré",
+  "sexe": "Femme",
+  "age": 30,
+  "taille": 173,
+  "poids": 65,
+  "choixPerso": 0,
+  "impactActivite": [],
+  "impactNutrition": [],
+  "evenement": true,
+  "mort": false,
+  "glycemie": 2.5,
+  "tabGlycemie": [
+    2.5
+  ],
+  "stress": 0,
+  "vie": 100,
+  "amput": 0,
+  "soda": true,
+  "faim": 0
+}
