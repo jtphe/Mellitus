@@ -41,8 +41,7 @@ Si vous souhaitez utiliser le **navigateur web** pour utiliser Discord :
 
 **Lien vers un serveur Discord qui contient un bot qui peut lançer le jeu** ➡️ https://discord.gg/8AkAsJA
 
-**Installation personnelle d'un serveur et d'un bot** ➡️ https://drive.google.com/open?id=1NpUusKxosOCf8AtIES5-60pueyE5PrEi
-
+**Installation personnelle d'un serveur et d'un bot** ➡️ https://anidiots.guide/getting-started/getting-started-long-version
 
 ## Screenshots
 
