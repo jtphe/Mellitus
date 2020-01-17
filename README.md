@@ -47,3 +47,8 @@ Si vous souhaitez utiliser le **navigateur web** pour utiliser Discord :
 
 Dossier contenant des screenshots du gameplay ➡️ https://drive.google.com/drive/folders/1hgOGmVy5mAWWaNiTNg0QX10_Z8Fwl6kV?usp=sharing
 
+# Membres du projet 
+* Thomas Mayer 
+* Edouard Gu
+* [Jean-Thavorak Phe](https://jtphe.ddns.net)
+
